@@ -1,7 +1,7 @@
 Qualys User List XML to CSV Converter
 =========================================
 
-Python script to download and convert the Qualys User List on a subscription to CSV
+A Python script to download and convert the Qualys User List from subscription to CSV utilizing the Qualys API v1
 
 Usage
 ==========================================
@@ -35,7 +35,7 @@ The above will output a file named ```userlist.csv``` the directory where ```con
 Requirements
 ==========================================
 
-* Python 2.7+
+* Python 2.7
 
 If you are using windows, python 2.7 can be downloaded from this link - please choose 32bit or 64bit download:
 

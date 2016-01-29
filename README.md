@@ -30,7 +30,7 @@ Qualys Password: somepassword
 Output
 ==========================================
 
-The above will output a file named userlist.csv the directory where 'converter.py' is located
+The above will output a file named ```userlist.csv``` the directory where ```converter.py``` is located
 
 Requirements
 ==========================================

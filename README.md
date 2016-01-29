@@ -16,10 +16,10 @@ On windows assuming we extracted it to ```c:\Qualys-UserList-To-CSV-Converter```
 
 then run the following command:
 
-```python /path/to/converter.py --username=qualys-username --password=qualys-password```
+```python converter.py --username=qualys-username --password=qualys-password```
 
 If you dont want to put your credentials via the command line just simply run
-``` python /path/to/converter.py ``` 
+``` python converter.py ``` 
 and the script will prompt your for username and password which will not be held in shell history
 ```
 $ python converter.py

@@ -35,11 +35,15 @@ def readinputs(argv):
     #    usage(e)
     #    sys.exit(2)
 
-    optlist, args = getopt.getopt(argv, '', ['username=', 'password='])
+    optlist, args = getopt.getopt(argv, '', ['username=', 'password=', '--help'])
     #if len(optlist) < 2:
     #    usage()
     #    sys.exit(2)
     
+    if '--help' in optlist:
+        usage()
+        sys.exit()
+
     returnDict = {}
     for name, value in optlist:
        returnDict[name[2:]] = value.strip()
@@ -50,6 +54,10 @@ def download_userlist(username, password):
     ''' Downloads the qualys user list via API v1 '''
     try:
         r = requests.post("https://qualysapi.qualys.com/msp/user_list.php", auth=(username, password), stream=True)
+        if 'ACCESS DENIED' in r.text:
+            print("ERROR: Unable to log into qualys.  Bad username or password")
+            sys.exit()
+
         with open(os.path.join(CV_HOME, 'ul.xml'), 'wb') as fd:
             for chunk in r.iter_content(10):
                 fd.write(chunk)
@@ -113,7 +121,6 @@ def convert_userlist():
         dw.writeheader()
 
         for user in users:
-            #dw.writerow(cvtools.sanitize_dict(user))
             dw.writerow(user)
 
 def usage():
@@ -127,5 +134,5 @@ def usage():
     print "\n"
 
 def help_def():
-    print "Downloads, parses and converts the Qualys Knowledgebase to CSV"
-    print "Outputs a file in %s called 'kb.csv'" % CV_HOME
+    print "Downloads, parses and converts the Qualys User List to CSV"
+    print "Outputs a file in %s called 'userlist.csv'" % CV_HOME
